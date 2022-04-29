@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AddQuestionController!{% endblock %}
+
+{% block body %}
+    <h1>Ваш вопрос:</h1>
+
+    {{ form_start(formQuestion) }}
+    {{ form_row(formQuestion.title, {
+        label: 'Заголовок вопроса'
+    }) }}
+    {{ form_row(formQuestion.text, {
+        label: 'Текст вопроса'
+    }) }}
+    {{ form_row(formQuestion.category, {
+        label: 'Категория'
+    }) }}
+    <br>
+    <div class="col text-center">
+        {{ form_row(formQuestion.save, {
+            label: 'Отправить на проверку'
+        }) }}
+    </div>
+
+
+
+
+    {{ form_end(formQuestion) }}
+    <datalist id="category">
+        {% for category in categories %}
+        <option value="{{ category.getName }}">
+            {% endfor %}
+    </datalist>
+{% endblock %}

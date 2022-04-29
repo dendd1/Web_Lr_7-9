@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}QaA{% endblock %}
+
+{% block body %}
+
+<main role="main">
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Популярный вопрос от {{ topQuestion[0].userName }}</h1>
+            <a style="color: black" href="question/{{ topQuestion[0].id }}"><h2>{{ topQuestion[0].title }}.</h2></a>
+            <p style="font-size: 28px">{{ topQuestion[0].text }}.</p>
+            <div style="display: flex; justify-content: space-between">
+                <p>Ответов: {{ topQuestion[0].countcom }}</p>
+                <p>{{ topQuestion[0].date|date('Y-m-d') }}</p>
+            </div>
+            <div class="col text-right">
+                <p><a class="btn btn-primary btn-lg" href="question/{{ topQuestion[0].id }}" role="button">Ответы
+                        &raquo;</a></p>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <h1>Свежие вопросы:</h1>
+    <hr>
+    {% for q in questions %}
+        <div class="container">
+            <div class="container-fluid">
+
+                <div>
+                    <a style="color: black" href="question/{{ q.id }}"><h2>{{ q.title }}</h2></a>
+                    <p>Вопрос от {{ q.userName }} </p>
+                    <p style="font-size: 24px">{{ q.text }}</p>
+                    <div style="display: flex; justify-content: space-between">
+                        <p>Ответов: {{ q.countcom }}</p>
+                        <p>{{ q.date|date('Y-m-d') }}</p>
+                    </div>
+                    <div class="col text-right">
+                        <p><a class="btn btn-secondary" href="question/{{ q.id }}" role="button">Ответы &raquo;</a></p>
+                    </div>
+                </div>
+
+
+                <hr>
+
+            </div> <!-- /container -->
+        </div>
+    {% endfor %}
+
+    <nav aria-label="...">
+        <ul class="pagination justify-content-center" style="font-size: large">
+            {{ knp_pagination_render(questions) }}
+        </ul>
+    </nav>
+    <div class="col text-center">
+
+
+    </div>
+
+
+    <footer class="container">
+        <p>&copy; Danila&Vladislav 2022</p>
+    </footer>
+
+    {% endblock %}

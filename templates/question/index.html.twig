@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}QaA{% endblock %}
+
+{% block body %}
+
+<main role="main">
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1>{{ question.title }}</h1>
+            <h3>Вопрос от {{ question.user.username }}.</h3>
+            <p style="font-size: 28px"> {{ question.text }}.</p>
+            <div style="display: flex; justify-content: space-between">
+                <p>Категория: {{ question.category.name }}</p>
+                <p>{{ question.date|date('Y-m-d') }}</p>
+            </div>
+
+
+        </div>
+    </div>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <h1>Ваш ответ:</h1>
+        {{ form(formAswer) }}
+        {#        {{ form_start(formAswer) }} #}
+        {#        {{ form(formAswer.text) }} #}
+        {#        <br> #}
+        {#        <div class="col text-center"> #}
+        {#            {{ form_row(formAswer.save, { #}
+        {#                label: 'Отправить на проверку' #}
+        {#            }) }} #}
+        {#        </div> #}
+        {#        {{ form_end(formAswer) }} #}
+    {% endif %}
+
+
+    <h1>Провереннные ответы:</h1>
+    <hr>
+    {% for a in aswers %}
+        <div class="container">
+            <div class="container-fluid">
+                <!-- Example row of columns -->
+                <div>
+                    <h2>Пользователь {{ a.author }}</h2>
+                    <p style="font-size: 24px">{{ a.text }}</p>
+                    <p>{{ a.date|date('Y-m-d') }}</p>
+                </div>
+                <hr>
+            </div>
+        </div> <!-- /container -->
+    {% endfor %}
+
+    <nav aria-label="...">
+        <ul class="pagination justify-content-center" style="font-size: large">
+            {{ knp_pagination_render(aswers) }}
+        </ul>
+    </nav>
+
+
+    <footer class="container">
+        <p>&copy; Danila&Vladislav 2022</p>
+    </footer>
+
+    {% endblock %}
