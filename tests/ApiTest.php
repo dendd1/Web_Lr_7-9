@@ -9,7 +9,7 @@ class ApiTest extends ApiTestCase
 {
     public function apiToken(): string
     {
-        $user = static::getContainer()->get(UserRepository::class)->findOneBy(['username' => 'danila']);
+        $user = static::getContainer()->get(UserRepository::class)->findOneBy(['email' => 'albert.e.m@mail.ru']);
         return $user->getApiToken();
     }
 
