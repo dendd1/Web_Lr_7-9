@@ -19,7 +19,6 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     {# bootstrap---------------end #}
-    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
@@ -59,7 +58,7 @@
                 {% else %}
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Вход<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/login" role="button">Вход</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/register">Регистрация <span class="sr-only">(current)</span></a>
@@ -69,6 +68,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
                 </li>
+
 
             </ul>
             <form class="form-inline mt-2 mt-md-0">

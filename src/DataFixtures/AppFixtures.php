@@ -8,6 +8,7 @@ use App\Entity\Question;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Uid\Uuid;
 
 class AppFixtures extends Fixture
 {
@@ -16,18 +17,21 @@ class AppFixtures extends Fixture
 
         $user_danila = new User();
         $user_danila->setUsername('Danila');
+        $user_danila->setApiToken(Uuid::v1()->toRfc4122());
         $user_danila->setPassword(password_hash('123456', PASSWORD_DEFAULT));
         $user_danila->setRoles(['ROLE_ADMIN']);
         $manager->persist($user_danila);
 
         $user_vlad = new User();
         $user_vlad->setUsername('Vlad');
+        $user_vlad->setApiToken(Uuid::v1()->toRfc4122());
         $user_vlad->setPassword(password_hash('123456', PASSWORD_DEFAULT));
         $user_vlad->setRoles(['ROLE_ADMIN']);
         $manager->persist($user_vlad);
 
         $user_dima = new User();
         $user_dima->setUsername('Dima');
+        $user_dima->setApiToken(Uuid::v1()->toRfc4122());
         $user_dima->setPassword(password_hash('123456', PASSWORD_DEFAULT));
         $manager->persist($user_dima);
 

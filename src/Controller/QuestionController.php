@@ -23,12 +23,7 @@ class QuestionController extends AbstractController
     #[Route('/question/{id}', name: 'app_answer')]
     public function index(int $id, ManagerRegistry $doctrine, Request $request, PaginatorInterface $paginator): Response
     {
-
         $question = $doctrine->getRepository(Question::class)->findOneBy(['id' => $id]);
-
-        if (!$question->getStatus()) {
-            return $this->redirectToRoute('app_home');
-        }
         $answer_for_form = new Aswer();
 
         $form = $this->createForm(AnswerType::class, $answer_for_form, [
@@ -55,11 +50,8 @@ class QuestionController extends AbstractController
 
         $answer = $doctrine->getRepository(Aswer::class)->getAnswersOnQuestion($id);
         $answers = $paginator->paginate(
-        // Doctrine Query, not results
             $answer,
-            // Define the page parameter
             $request->query->getInt('page', 1),
-            // Items per page
             5
         );
 

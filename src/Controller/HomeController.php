@@ -26,11 +26,8 @@ class HomeController extends AbstractController
         $topQuestion = $doctrine->getRepository(Question::class)->getTopQuestion();
 
         $appointments = $paginator->paginate(
-        // Doctrine Query, not results
             $question,
-            // Define the page parameter
             $request->query->getInt('page', 1),
-            // Items per page
             5
         );
         return $this->render('home/index.html.twig', [

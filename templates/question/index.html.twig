@@ -22,15 +22,6 @@
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <h1>Ваш ответ:</h1>
         {{ form(formAswer) }}
-        {#        {{ form_start(formAswer) }} #}
-        {#        {{ form(formAswer.text) }} #}
-        {#        <br> #}
-        {#        <div class="col text-center"> #}
-        {#            {{ form_row(formAswer.save, { #}
-        {#                label: 'Отправить на проверку' #}
-        {#            }) }} #}
-        {#        </div> #}
-        {#        {{ form_end(formAswer) }} #}
     {% endif %}
 
 
